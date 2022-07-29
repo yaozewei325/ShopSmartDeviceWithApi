@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:ShopSmartDevice.Views"
+       
+             x:Class="ShopSmartDevice.Views.AppShell">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+
+                <Setter Property="Shell.ForegroundColor" Value="Blue" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
+                <Setter Property="Shell.DisabledColor" Value="Blue" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="Blue"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Black"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="Black"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <Tab Title="Accueil" Icon="home.ico">
+            <ShellContent  ContentTemplate="{DataTemplate local:AccueilPage}" />
+
+        </Tab>
+
+        <Tab Title="Magasiner" Icon="shop.ico">
+            <ShellContent Title="Produits" ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent Title="Ajouter" ContentTemplate="{DataTemplate local:AddDevicePage}" />
+            <ShellContent Title="Gérer"  ContentTemplate="{DataTemplate local:GestionItemPage}" />
+            <ShellContent Title="Factures" ContentTemplate="{DataTemplate local:FacturesPage}" />
+
+        </Tab>
+
+        <Tab Title="Voir Panier" Icon="cart.ico">
+            <ShellContent ContentTemplate="{DataTemplate local:PanierPage}" />
+        </Tab>
+
+    </TabBar>
+
+</Shell>

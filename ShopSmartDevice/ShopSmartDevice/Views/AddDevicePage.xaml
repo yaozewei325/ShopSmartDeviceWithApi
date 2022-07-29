@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopSmartDevice.Views.AddDevicePage"
+              xmlns:local="clr-namespace:ShopSmartDevice.ViewModels"  
+             xmlns:model="clr-namespace:ShopSmartDevice.ViewModels"
+             xmlns:model1="clr-namespace:ShopSmartDevice.Models">
+    
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout>
+                <Frame BackgroundColor="#25a5be">
+                    <Label Text="Ajouter un produit" FontAttributes="Bold" TextColor="White"
+ FontSize="Large"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                </Frame>
+
+            </StackLayout>
+
+            <Grid Padding="10" HeightRequest="320"
+                  RowDefinitions="1*,1*,1*,1*"
+                  ColumnDefinitions="1*,3*"
+                  BackgroundColor="Azure"
+         		x:DataType="model:AddDevicePageVM">
+
+                <Label Grid.Column="0"
+                       Text="Modele :"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                        
+                       />
+                <Entry Grid.Column="1" 
+                       Placeholder="Taper le Modele"  FontAttributes="Bold"
+                       Text="{Binding txtModele, Mode=TwoWay}"  
+                      />
+
+                <Label Grid.Row="1" 
+                       Text="Fabriquant: "   FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="1" Grid.Column="1" 
+                       Placeholder="Taper le Fabriquant"
+                       FontAttributes="Bold"
+                       Text="{Binding txtFabriquant, Mode=TwoWay}"
+                      />
+                <Label Grid.Row="2" 
+                       Text="Type: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="2" Grid.Column="1" 
+                       Placeholder="Taper le type"
+                       FontAttributes="Bold"  
+                       Text="{Binding txtType, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="3" 
+                       Text="Plateforme: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="3" Grid.Column="1"
+                       Placeholder="Taper la Plateforme"
+                       FontAttributes="Bold"  
+                       Text="{Binding txtPlateforme, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="4" 
+                       Text="Prix: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="4" Grid.Column="1" 
+                       Placeholder="Taper le prix"
+                       FontAttributes="Bold"  
+                       Text="{Binding txtPrix, Mode=TwoWay}"
+                      />
+
+
+            </Grid>
+
+            <StackLayout Orientation="Horizontal">
+                <!--<Button Text="ANNULER" Command="{Binding CmdCancel}" HorizontalOptions="FillAndExpand"></Button>-->
+                <Button Text="Ajouter" Command="{Binding AddDeviceCmd}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

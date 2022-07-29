@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:local="clr-namespace:ShopSmartDevice.ViewModels"  
+             xmlns:model="clr-namespace:ShopSmartDevice.ViewModels"
+             xmlns:model1="clr-namespace:ShopSmartDevice.Models"
+             x:Class="ShopSmartDevice.Views.FacturesPage">
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#25a5be" Padding="24" CornerRadius="0">
+                <Label Text="Liste des Factures" HorizontalTextAlignment="Center" TextColor="White" FontSize="30"/>
+            </Frame>
+
+            <StackLayout Margin="20,35,20,20">
+
+                <CollectionView ItemsSource="{Binding ListFactures}"
+                    SelectionMode="Single">
+                    <!--SelectionChanged="CollectionView_SelectionChanged"-->
+
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems Mode="Execute">
+                                        <SwipeItem Text="Supprimer" BackgroundColor="Red" 
+                                                   Command="{Binding Source={RelativeSource AncestorType={x:Type local:FacturesPageVM}}, Path=Supprimer}"		
+                                CommandParameter="{Binding .}"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+
+                                <Grid Padding="10"
+                            RowDefinitions="Auto, *"
+                            ColumnDefinitions="Auto,*"
+                  BackgroundColor="Azure"
+                                  
+                             x:DataType="model1:Facture">
+
+                                    <Image  
+                                Source="{Binding Photo}"
+                                Aspect="AspectFit"
+                                HeightRequest="100"
+                                WidthRequest="100" />
+                                    <StackLayout Orientation="Vertical"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="End"
+                                         Margin="0,0,10,0"
+                                         Grid.Row="0"
+                                         Grid.Column="1">
+
+
+                                        <Label 
+                                Text="{Binding Id, StringFormat='ID Facture: {0}'}"
+                                FontAttributes="Bold"
+                                VerticalOptions="Start"
+                                Padding="10,15,0,0"/>
+                                        <Label  
+                                Text="{Binding NomClient, StringFormat='Nom de Client: {0}'}"
+                                VerticalOptions="Start"
+                                Padding="10,0,0,0"/>
+                                        <Label Grid.Row="2"
+                                Grid.Column="1"
+                                Text="{Binding Montant, StringFormat='Montant:{0}$'}"
+                                VerticalOptions="Start"
+                                Padding="10,0,0,0"/>
+                                        <Label  
+                                
+                                Text="{Binding NumBancaire, StringFormat='Numéro Bancaire:{0}'}"
+                                VerticalOptions="Start"
+                                Padding="10,0,0,0"/>
+
+                                        <Label  
+                                Text="{Binding ProduitsStr, StringFormat='Produits:{0}'}"
+                                VerticalOptions="Start"
+                                Padding="10,0,0,0"/>
+
+
+                                    </StackLayout>
+
+
+
+
+
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

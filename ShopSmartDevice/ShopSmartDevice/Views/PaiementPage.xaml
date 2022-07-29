@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:local="clr-namespace:ShopSmartDevice.ViewModels"  
+             xmlns:model="clr-namespace:ShopSmartDevice.ViewModels"
+             xmlns:model1="clr-namespace:ShopSmartDevice.Models"
+             x:Class="ShopSmartDevice.Views.PaiementPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Frame BackgroundColor="#25a5be">
+                    <Label Text="Page de Paiement" FontAttributes="Bold" TextColor="White"
+ FontSize="Large"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                </Frame>
+
+            </StackLayout>
+
+            <Grid Padding="10" HeightRequest="320"
+                  RowDefinitions="1*,1*,1*,1*"
+                  ColumnDefinitions="1*,3*"
+                  BackgroundColor="Azure"
+         		x:DataType="model:PaiementPageVM">
+
+                <Label Grid.Column="0"
+                       Text="Nom :"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                        
+                       />
+                <Entry Grid.Column="1" 
+                       Placeholder="Taper votre nom"  FontAttributes="Bold"
+                       Text="{Binding AjouterNom, Mode=TwoWay}"  
+                      />
+
+                <Label Grid.Row="1" 
+                       Text="Prénom: "   FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="1" Grid.Column="1" 
+                       Placeholder="Taper votre prénom"
+                       FontAttributes="Bold"
+                       Text="{Binding AjouterPrenom, Mode=TwoWay}"
+                      />
+                <Label Grid.Row="2" 
+                       Text="Adresse: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="2" Grid.Column="1" 
+                       Placeholder="Taper votre adresse"
+                       FontAttributes="Bold"  
+                       Text="{Binding AjouterAdresse, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="3" 
+                       Text="Téléphone: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="3" Grid.Column="1"
+                       Placeholder="Taper votre téléphone"
+                       FontAttributes="Bold"  
+                       Text="{Binding AjouterTele, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="4" 
+                       Text="Courriel: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="4" Grid.Column="1" 
+                       Placeholder="Taper votre courriel"
+                       FontAttributes="Bold"  
+                       Text="{Binding AjouterCourriel, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="5" 
+                       Text="Numéro Carte Bancaire: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Entry Grid.Row="5" Grid.Column="1" x:Name="txtBancaire"
+                       Placeholder="Taper Votre Numéro Carte Bancaire"
+                       FontAttributes="Bold"  
+                       Text="{Binding AjouterNumBancaire, Mode=TwoWay }"
+                      />
+
+                <Label Grid.Row="6" 
+                       Text="Montant à payer: "
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+                <Label Grid.Row="6" Grid.Column="1"
+                       Text="{Binding Montant, StringFormat='{0}$'}"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+
+
+            </Grid>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="ANNULER" Command="{Binding CmdCancel}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="PAYER" Command="{Binding CmdAjouter}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

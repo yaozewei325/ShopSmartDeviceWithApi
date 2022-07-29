@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopSmartDevice.Views.AccueilPage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#25a5be">
+            <StackLayout Margin="0" Padding="0">
+                 
+                    <Image Source="storefront.jpg" Margin="0" Aspect="AspectFill"/>
+              
+
+
+                <Label Text="Bienvenue dans notre magasin virtuel" FontSize="Large" TextColor="White" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Adresse: 24, Gréber Gatineau" FontSize="Medium" TextColor="White" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Téléphone: 819 666-6859" FontSize="Small" TextColor="White" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Courriel: SmartDevice@hotmail.ca" FontSize="Medium" TextColor="White" FontAttributes="Bold" VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+
+            </StackLayout>
+        </Grid>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

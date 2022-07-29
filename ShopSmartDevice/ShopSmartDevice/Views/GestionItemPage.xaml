@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShopSmartDevice.Views.GestionItemPage"
+                 xmlns:model="clr-namespace:ShopSmartDevice.Models"
+    xmlns:model1="clr-namespace:ShopSmartDevice.ViewModels">
+
+    <ContentPage.Content>
+        <StackLayout  x:DataType="model1:GestionItemPageVM">
+
+            <StackLayout Margin="10">
+                <Frame
+                BorderColor="Black"
+                CornerRadius="10"
+                HasShadow="True">
+                    <StackLayout>
+                        <Label Text="{Binding DeviceItem.Id, StringFormat='ID: {0}'}" />
+                        <Label Text="{Binding DeviceItem.Modele, StringFormat='Modele: {0}'}" />
+                        <Label Text="{Binding DeviceItem.Fabriquant, StringFormat='Fabriquant: {0}'}" />
+                        <Label Text="{Binding DeviceItem.Type, StringFormat='Type: {0}'}" />
+                        <Label Text="{Binding DeviceItem.Plateforme, StringFormat='Plateforme: {0}'}" />
+                        <Label Text="{Binding DeviceItem.Prix, StringFormat='Prix: {0}'}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <Entry Text="{Binding txtDeviceId, Mode=TwoWay}" />
+            <Button Command="{Binding GetDeviceByIdCmd}" Text="Get Device By Id" />
+
+            <Grid  
+                  RowDefinitions="1*,1*,1*,1*"
+                  ColumnDefinitions="1*,3*"
+                  BackgroundColor="Azure">
+
+                <Label Grid.Column="0"
+                       Text="Modele:"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+
+                <Entry Grid.Column="1" 
+                       FontSize="Small"
+                       Text="{Binding txtModele, Mode=TwoWay}"  
+                      />
+
+
+                <Label Grid.Row="1"
+                       Text="Fabriquant:"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+
+                <Entry Grid.Row="1" Grid.Column="1" 
+                       FontSize="Small"
+                       Text="{Binding txtFabriquant, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="2"
+                       Text="Type:"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+
+                <Entry Grid.Row="2" Grid.Column="1" 
+                       FontSize="Small"
+                       Text="{Binding txtType, Mode=TwoWay}"
+                      />
+                <Label Grid.Row="3"
+                       Text="Plateforme:"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+
+                <Entry Grid.Row="3"  Grid.Column="1"
+                       FontSize="Small"
+                       Text="{Binding txtPlateforme, Mode=TwoWay}"
+                      />
+
+                <Label Grid.Row="4"
+                       Text="Prix:"
+                       VerticalOptions="Center" HorizontalOptions="Start"
+                       />
+
+                <Entry Grid.Row="4" Grid.Column="1" 
+                       FontSize="Small"
+                       Text="{Binding txtPrix, Mode=TwoWay}"
+                      />
+
+
+            </Grid>
+            <Button Text="Modifier" Command="{Binding UpdateDeviceCmd}" HorizontalOptions="FillAndExpand"></Button>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
