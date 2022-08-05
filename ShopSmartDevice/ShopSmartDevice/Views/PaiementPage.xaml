@@ -4,12 +4,14 @@
                    xmlns:local="clr-namespace:ShopSmartDevice.ViewModels"  
              xmlns:model="clr-namespace:ShopSmartDevice.ViewModels"
              xmlns:model1="clr-namespace:ShopSmartDevice.Models"
-             x:Class="ShopSmartDevice.Views.PaiementPage">
+             x:Class="ShopSmartDevice.Views.PaiementPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
                 <Frame BackgroundColor="#25a5be">
-                    <Label Text="Page de Paiement" FontAttributes="Bold" TextColor="White"
+                    <Label Text="{Binding Montant, StringFormat='Montant: {0}$'}" 
+                        FontAttributes="Bold" TextColor="White"
  FontSize="Large"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" />
@@ -17,89 +19,96 @@
 
             </StackLayout>
 
-            <Grid Padding="10" HeightRequest="320"
-                  RowDefinitions="1*,1*,1*,1*"
-                  ColumnDefinitions="1*,3*"
-                  BackgroundColor="Azure"
-         		x:DataType="model:PaiementPageVM">
+            <StackLayout>
+                <Label Style="{StaticResource FactureLabelStyle}" Text="Prénom" />
+                <Frame Style="{StaticResource FactureEntryStyle}">
 
-                <Label Grid.Column="0"
-                       Text="Nom :"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                        
-                       />
-                <Entry Grid.Column="1" 
-                       Placeholder="Taper votre nom"  FontAttributes="Bold"
-                       Text="{Binding AjouterNom, Mode=TwoWay}"  
-                      />
+                    <Entry Text="{Binding AjouterPrenom}">
+                        <Entry.Behaviors>
+                                <xct:TextValidationBehavior IsValid="{Binding PrenomValide,Converter={StaticResource invertBoolConverter}}" RegexPattern="^[a-zA-ZÀ-ÿ ]{2,100}$"/>
 
-                <Label Grid.Row="1" 
-                       Text="Prénom: "   FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
-                <Entry Grid.Row="1" Grid.Column="1" 
-                       Placeholder="Taper votre prénom"
-                       FontAttributes="Bold"
-                       Text="{Binding AjouterPrenom, Mode=TwoWay}"
-                      />
-                <Label Grid.Row="2" 
-                       Text="Adresse: "
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
-                <Entry Grid.Row="2" Grid.Column="1" 
-                       Placeholder="Taper votre adresse"
-                       FontAttributes="Bold"  
-                       Text="{Binding AjouterAdresse, Mode=TwoWay}"
-                      />
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Label Grid.Row="3" 
-                       Text="Téléphone: "
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
-                <Entry Grid.Row="3" Grid.Column="1"
-                       Placeholder="Taper votre téléphone"
-                       FontAttributes="Bold"  
-                       Text="{Binding AjouterTele, Mode=TwoWay}"
-                      />
-
-                <Label Grid.Row="4" 
-                       Text="Courriel: "
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
-                <Entry Grid.Row="4" Grid.Column="1" 
-                       Placeholder="Taper votre courriel"
-                       FontAttributes="Bold"  
-                       Text="{Binding AjouterCourriel, Mode=TwoWay}"
-                      />
-
-                <Label Grid.Row="5" 
-                       Text="Numéro Carte Bancaire: "
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
-                <Entry Grid.Row="5" Grid.Column="1" x:Name="txtBancaire"
-                       Placeholder="Taper Votre Numéro Carte Bancaire"
-                       FontAttributes="Bold"  
-                       Text="{Binding AjouterNumBancaire, Mode=TwoWay }"
-                      />
-
-                <Label Grid.Row="6" 
-                       Text="Montant à payer: "
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
-                <Label Grid.Row="6" Grid.Column="1"
-                       Text="{Binding Montant, StringFormat='{0}$'}"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center" HorizontalOptions="Start"
-                       />
+                </Frame>
+                <Label
+                    IsVisible="{Binding PrenomValide}"
+                    Style="{StaticResource InvalidStyle}"
+                    Text="Le prenom doit être en lettres et 2-100 lettres au total" />
 
 
-            </Grid>
+                <Label  Style="{StaticResource FactureLabelStyle}"  Text="Nom" />
+                <Frame Style="{StaticResource FactureEntryStyle}">
+                    <Entry Text="{Binding AjouterNom}">
+                        <Entry.Behaviors>
+                                <xct:TextValidationBehavior IsValid="{Binding NomValide,Converter={StaticResource invertBoolConverter}}" RegexPattern="^[a-zA-ZÀ-ÿ ]{2,100}$"/>
+
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Label
+                    IsVisible="{Binding NomValide}"
+                    Style="{StaticResource InvalidStyle}"
+                    Text="Le nom doit être en lettres et 2-100 lettres au total" />
+
+
+                <Label  Style="{StaticResource FactureLabelStyle}" Text="Adresse" />
+                <Frame Style="{StaticResource FactureEntryStyle}">
+                    <Entry Text="{Binding AjouterAdresse}">
+                        <Entry.Behaviors>
+                            <xct:RequiredStringValidationBehavior IsValid="{Binding AdresseValide}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Label
+                    IsVisible="{Binding AdresseValide}"
+                    Style="{StaticResource InvalidStyle}"
+                    Text="Veuillez entrer l'adresse" />
+
+
+                <Label  Style="{StaticResource FactureLabelStyle}" Text="Téléphone" />
+                <Frame Style="{StaticResource FactureEntryStyle}">
+                    <Entry Text="{Binding AjouterTele}">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior IsValid="{Binding TelephoneValide, Converter={StaticResource invertBoolConverter}}" RegexPattern="^[0-9]{3}\s[0-9]{3}(\s|-)[0-9]{4}$"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Label
+                    IsVisible="{Binding TelephoneValide}"
+                    Style="{StaticResource InvalidStyle}"
+                    Text="Veuillez entrer le numéro de telephone valide ex: 111 111-1111 ou 111 111 1111" />
+
+                <Label  Style="{StaticResource FactureLabelStyle}" Text="Courriel" />
+                <Frame Style="{StaticResource FactureEntryStyle}">
+                    <Entry Text="{Binding AjouterCourriel}">
+                        <Entry.Behaviors>
+                            <xct:EmailValidationBehavior IsValid="{Binding CourrielValide, Converter={StaticResource invertBoolConverter}}" />
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Label
+                    IsVisible="{Binding CourrielValide}"
+                    Style="{StaticResource InvalidStyle}"
+                    Text="Veuillez entrer le courriel dans un format valide ex: example@courriel.com" />
+
+                <Label  Style="{StaticResource FactureLabelStyle}" Text="Numéro Bancaire:" />
+                <Frame Style="{StaticResource FactureEntryStyle}">
+                    <Entry Text="{Binding AjouterNumBancaire}">
+                        <Entry.Behaviors>
+                            <xct:TextValidationBehavior IsValid="{Binding NumBancaireValide, Converter={StaticResource invertBoolConverter}}" RegexPattern="^\d{14}$"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </Frame>
+                <Label
+                    IsVisible="{Binding NumBancaireValide}"
+                    Style="{StaticResource InvalidStyle}"
+                    Text="Le numéro bancaire doit contenir 14 chiffres" />
+
+            </StackLayout>
+
+
+
 
             <StackLayout Orientation="Horizontal">
                 <Button Text="ANNULER" Command="{Binding CmdCancel}" HorizontalOptions="FillAndExpand"></Button>

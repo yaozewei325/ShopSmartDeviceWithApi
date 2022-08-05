@@ -11,7 +11,6 @@ namespace ShopSmartDevice.ViewModels
 {
     internal class AddDevicePageVM
     {
-        private readonly DataProviderService dataService = new DataProviderService();
 
         public string txtModele { get; set; }
         public string txtFabriquant { get; set; }
@@ -48,7 +47,7 @@ namespace ShopSmartDevice.ViewModels
             SmartDevice device = await App.dataProviderService.AddDeviceAsync(newDevice);
             if (device == null)
 
-                await App.Current.MainPage.DisplayAlert("Confirmation", $"Élément ajouté avec Id = {device.Id}", "Fermer");
+                await App.Current.MainPage.DisplayAlert("Erreur", $"élément non ajouté", "Fermer");
 
 
             else

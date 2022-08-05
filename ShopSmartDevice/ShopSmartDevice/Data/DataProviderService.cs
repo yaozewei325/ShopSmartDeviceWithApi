@@ -14,12 +14,20 @@ namespace ShopSmartDevice.Data
 {
     public class DataProviderService
     {
+        //utilisez cette adresse de base si l'Api est déployée
+        //private static string BaseAddress = "http://10.0.2.2:8085";
+
+        //utilisez cet deuxième chemin locale si l'api est pas déployée
         private static string BaseAddress = "https://10.0.2.2:7029";
+
+
         private HttpClient httpClient;
         private JsonSerializerOptions serializerOptions;
 
         public DataProviderService()
         {
+            //configuration pour contourner la connexion sécurisée avec un appareil Android
+
 #if DEBUG
             HttpClientHandler insecureHandler = GetInsecureHandler();
             this.httpClient = new HttpClient(insecureHandler);
@@ -38,11 +46,11 @@ namespace ShopSmartDevice.Data
 
         }
 
-        // This method must be in a class in a platform project, even if
-        // the HttpClient object is constructed in a shared project.
+        //Cette méthode doit se trouver dans une classe d’un projet de plateforme, même si
+        //  l’objet HttpClient est construit dans un projet partagé.
+
         public HttpClientHandler GetInsecureHandler()
         {
-
 
             HttpClientHandler handler = new HttpClientHandler();
 
@@ -54,6 +62,10 @@ namespace ShopSmartDevice.Data
             };
             return handler;
         }
+
+        //méthodes de connexion avec les contrôleurs Api
+
+        //*********************CRUD pours les SmartDevices*************************
 
         public async Task<List<SmartDevice>> GetAllDevicesAsync()
         {

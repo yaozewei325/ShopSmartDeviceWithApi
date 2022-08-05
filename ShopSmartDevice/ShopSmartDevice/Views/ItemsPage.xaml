@@ -82,7 +82,7 @@
                                         <TapGestureRecognizer 
                                 NumberOfTapsRequired="2"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsPageVM}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
+                                CommandParameter="{Binding Id}">
                                         </TapGestureRecognizer>
                                     </Grid.GestureRecognizers>
 

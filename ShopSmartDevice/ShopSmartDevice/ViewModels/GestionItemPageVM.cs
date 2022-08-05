@@ -10,7 +10,6 @@ namespace ShopSmartDevice.ViewModels
 {
     internal class GestionItemPageVM : BaseViewModel
     {
-        private readonly DataProviderService dataService = new DataProviderService();
         private SmartDevice deviceItem;
         public string txtDeviceId { get; set; }
         public int DeviceId { get; set; }
@@ -39,19 +38,21 @@ namespace ShopSmartDevice.ViewModels
 
         }
 
+        //saisir l’id inséré dans la zone de texte pour trouver le device
+
         private async void GetDeviceById(object obj)
         {
             DeviceId = Int32.Parse(txtDeviceId);
             if (DeviceId == 0) return;
             DeviceItem = new SmartDevice();
-            DeviceItem = await dataService.GetDeviceById(DeviceId);
+            DeviceItem = await App.dataProviderService.GetDeviceById(DeviceId);
         }
 
+        //saisir les valeurs insérés dans la zone de texte pour modifier l’élément
         private async void UpdateDevice()
         {
-
             Prix = Double.Parse(txtPrix, System.Globalization.NumberStyles.Currency);
-            await dataService.UpdateDeviceAsync(DeviceId, txtModele, txtFabriquant, txtType, txtPlateforme, Prix, txtImageUrl);
+            await App.dataProviderService.UpdateDeviceAsync(DeviceId, txtModele, txtFabriquant, txtType, txtPlateforme, Prix, txtImageUrl);
             await Shell.Current.GoToAsync(nameof(ItemsPage));
         }
     }

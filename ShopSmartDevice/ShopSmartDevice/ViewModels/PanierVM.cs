@@ -19,27 +19,27 @@ namespace ShopSmartDevice.ViewModels
     {
 
         //les modifications de la quantité totale et du montant du panier seront notifiées à la page
-        private int _count;
+        private int count;
         public int Count
         {
-            get { return _count; }
-            set { SetValue(ref _count, value); }
+            get { return count; }
+            set { SetValue(ref count, value); }
         }
 
-        private double _total;
+        private double total;
         public double Total
         {
-            get { return _total; }
-            set { SetValue(ref _total, value); }
+            get { return total; }
+            set { SetValue(ref total, value); }
         }
 
 
-        private ObservableCollection<SmartDevice> _content;
+        private ObservableCollection<SmartDevice> content;
 
         public ObservableCollection<SmartDevice> Content
         {
-            get { return _content; }
-            set { SetValue(ref _content, value); }
+            get { return content; }
+            set { SetValue(ref content, value); }
         }
 
         //définir les délégués de commande

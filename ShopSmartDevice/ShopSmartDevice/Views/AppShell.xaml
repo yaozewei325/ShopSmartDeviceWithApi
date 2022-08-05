@@ -30,7 +30,7 @@
         <Tab Title="Magasiner" Icon="shop.ico">
             <ShellContent Title="Produits" ContentTemplate="{DataTemplate local:ItemsPage}" />
             <ShellContent Title="Ajouter" ContentTemplate="{DataTemplate local:AddDevicePage}" />
-            <ShellContent Title="Gérer"  ContentTemplate="{DataTemplate local:GestionItemPage}" />
+            <ShellContent Title="Modifier"  ContentTemplate="{DataTemplate local:GestionItemPage}" />
             <ShellContent Title="Factures" ContentTemplate="{DataTemplate local:FacturesPage}" />
 
         </Tab>

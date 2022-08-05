@@ -41,6 +41,9 @@ namespace ShopSmartDevice.Models
         {
             return this.content.Sum(p => p.Prix);
         }
+
+        //Méthode pour transfert des noms des produits sur la page de factures
+
         public List<string> GetProductNames()
         {
             List<string> list = new List<string>();

@@ -8,9 +8,6 @@ namespace ShopSmartDevice.Models
 {
     public class SmartDevice
     {
-        //definir les enums pour faciliter les contraintes
-
- 
 
         public int Id { get; set; }
         public string Modele { get; set; }

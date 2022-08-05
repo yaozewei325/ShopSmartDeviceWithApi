@@ -16,6 +16,7 @@ namespace ShopSmartDevice.ViewModels
 {
     public class ItemsPageVM : BaseViewModel
     {
+
         public ObservableCollection<SmartDevice> SmartDevices
         {
             get;
@@ -23,17 +24,17 @@ namespace ShopSmartDevice.ViewModels
         }
 
         //quantité totale dans le panier
-        private int _count;
+        private int count;
 
         //le changement de total doit être notifié à la page
         public int Count
         {
-            get { return _count; }
-            set { SetValue(ref _count, value); }
+            get { return count; }
+            set { SetValue(ref count, value); }
         }
 
         //Commande pour l'action de double-clic
-        public Command<SmartDevice> ItemTapped { get; }
+        public Command<int> ItemTapped { get; }
 
         public Command ViderPanier { get; }
         public Command Supprimer { get; }
@@ -42,7 +43,7 @@ namespace ShopSmartDevice.ViewModels
         public ItemsPageVM()
         {
             //En double-cliquant Enregistrer dans le panier.
-            this.ItemTapped = new Command<SmartDevice>(OnAddSmartDevice);
+            this.ItemTapped = new Command<int>(OnAddSmartDevice);
             this.ViderPanier = new Command(ClearList);
             this.Supprimer = new Command<SmartDevice>(DeleteItem);
 
@@ -50,6 +51,7 @@ namespace ShopSmartDevice.ViewModels
 
         }
 
+    
         public void RefreshList()
         {
             LoadSmartDevices();
@@ -75,10 +77,14 @@ namespace ShopSmartDevice.ViewModels
                 Debug.WriteLine(ex);
             }
         }
-        private void OnAddSmartDevice(SmartDevice item)
-        {
 
-            App.Panier.AddProduct(item);
+        //Ajouter un device par ID
+
+        private async void OnAddSmartDevice(int id)
+        {
+            if (id == 0) return;
+            SmartDevice device = await App.dataProviderService.GetDeviceById(id);
+            App.Panier.AddProduct(device);
             this.Count = App.Panier.CountPanier();
 
         }
@@ -104,6 +110,6 @@ namespace ShopSmartDevice.ViewModels
             LoadSmartDevices();
         }
 
-        
+
     }
 }
